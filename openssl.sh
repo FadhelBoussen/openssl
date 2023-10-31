@@ -2,10 +2,6 @@
 
 #let's check the extension of the file before proceeding to the encryption
 
-var= pwd
-
-#remote-server="ipaddress"
-
 read -p "enter the file you want to encyprt or decrypt : " file
 
 read -p "specify the output file " outfile
