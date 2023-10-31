@@ -2,34 +2,37 @@
 
 #let's check the extension of the file before proceeding to the encryption
 
-read -p "enter the file you want to encyprt : " file
+var= pwd
 
-extension=${file##*.}
+#remote-server="ipaddress"
 
-if [ "$extension" = "enc" ]
-
-then echo "this is enc"
-
-elif [ "$extension" = !"enc" ]
-
-then
-
-echo "this is not enc"
-
-fi
-
-#specify the file you want to encrypt
-
-read -p "specify the file you want to encrypt " infile
-
-echo $infile
+read -p "enter the file you want to encyprt or decrypt : " file
 
 read -p "specify the output file " outfile
 
+
+echo $infile
+
+
 echo $outfile
 
-echo "all right let's move on to serious things"
 
-openssl enc -aes-256-cbc -salt -in $infile -out $outfile -k PASS
+extension=${file##*.}
 
-mv pwd /home/encrypted-Data
+
+if [ "$extension" != "enc" ]; then
+
+
+openssl enc -aes-256-cbc -salt -in $file -out $outfile
+
+
+# scp $outfile username@remote_server:/path/to/destination/
+
+else
+
+
+openssl enc -d -aes-256-cbc -in $file -out $outfile
+
+
+fi
+
